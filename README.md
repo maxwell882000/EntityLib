@@ -1,0 +1,1 @@
+## Simplify a little bit working with entity
