@@ -6,7 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageId>Maxwell.EntityLib</PackageId>
-        <Version>1.0.1</Version>
+        <Version>1.0.2</Version>
         <Authors>Shokhzod</Authors>
         <Description>Simplify a little bit working with entity.</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression> <!-- Specify your license type -->
