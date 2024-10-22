@@ -1,3 +1,4 @@
+using EntityLib.Domain.Dtos;
 using EntityLib.Domain.Entities;
 using EntityLib.Domain.Repositories;
 using EntityLib.Domain.Specifications;
@@ -37,6 +38,19 @@ namespace EntityLib.Infrastructure.Repositories
             if (specification != null)
                 return await specification.Apply(context.Set<TEntity>()).ToListAsync();
             return await DbSet.AsNoTracking().ToListAsync();
+        }
+
+        public async Task<Paginated<TEntity>> FindPaginated(ISpecification<TEntity> specification, int page = 1,
+            int pageSize = 10)
+        {
+            var total = await specification.Apply(context.Set<TEntity>()).AsNoTracking().CountAsync();
+            var items = await specification.Apply(context.Set<TEntity>()).Skip((page - 1) * pageSize).Take(pageSize)
+                .ToListAsync();
+            return new Paginated<TEntity>()
+            {
+                Total = total,
+                Items = items,
+            };
         }
 
         public async Task<TEntity?> FindFirst(ISpecification<TEntity>? specification = null)
